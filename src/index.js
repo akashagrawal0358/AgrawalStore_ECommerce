@@ -3,15 +3,25 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { AppProvider } from './contexts/productContext'
+import { FilterContextProvider } from './contexts/filter_context';
+import { CartContextProvider } from './contexts/cartContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+
+    {/* AppProvider is providing all the data  */}
+    <AppProvider>
+
+      {/* FilterContextProvider is providing all the data to products page  */}
+      <FilterContextProvider>
+        <CartContextProvider>
+          <App />
+        </CartContextProvider>
+      </FilterContextProvider>
+    </AppProvider>
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
